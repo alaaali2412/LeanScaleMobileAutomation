@@ -41,6 +41,8 @@ public class LoginPage extends PageBase {
     @AndroidFindBy(xpath = "//android.widget.CheckBox")
     private AndroidElement checkBox;
 
+    @AndroidFindBy(xpath = "//android.widget.EditText")
+    private List<AndroidElement> facebookFields;
 
     public void addEmailAndPassword() {
         String email = generateRandomText(7) + "@mail.com";
@@ -62,11 +64,9 @@ public class LoginPage extends PageBase {
     public void loginWithGoogle() throws InterruptedException {
         setPropertiesFileName("LoginData.properties");
         clickButton(googleBtn);
-
         clearField(googleEmailField);
         addText(googleEmailField, getValuesFromPropertiesFile("GoogleEmail"));
         clickButton(buttons.get(2));
-
         waitVisibilityOfElement(checkBox);
         clearField(googlePasswordField);
         addText(googleEmailField, getValuesFromPropertiesFile("GooglePassword"));
@@ -77,7 +77,15 @@ public class LoginPage extends PageBase {
         clickButton(buttons.get(0));
     }
 
-    public void loginWithFacebook(){
+    public void loginWithFacebook() throws InterruptedException {
+        setPropertiesFileName("LoginData.properties");
         clickButton(facebookBtn);
+        clearField(facebookFields.get(0));
+        clearField(facebookFields.get(1));
+        addText(facebookFields.get(0),getValuesFromPropertiesFile("FacebookEmail") );
+        addText(facebookFields.get(1),getValuesFromPropertiesFile("FacebookPassword") );
+        clickButton(buttons.get(0));
+        Thread.sleep(6000);
+        clickButton(buttons.get(0));
     }
 }

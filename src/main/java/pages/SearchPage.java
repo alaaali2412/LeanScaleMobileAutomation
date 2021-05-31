@@ -20,10 +20,17 @@ public class SearchPage extends PageBase {
     @AndroidFindBy(id = "com.zzkko:id/root_container")
     private List<AndroidElement> items;
 
+    @AndroidFindBy(accessibility = "BACK")
+    private AndroidElement backBtn;
 
     public void searchAnItem(String itemName, int item) {
         searchField.sendKeys(itemName);
         driver.pressKey(new KeyEvent(AndroidKey.ENTER));
         clickButton(items.get(item));
+    }
+
+    public void clickBackBtn() {
+        waitVisibilityOfElement(backBtn);
+        clickButton(backBtn);
     }
 }

@@ -22,4 +22,14 @@ public class TC02_SocialLoginTest extends SetUpConnection {
         profilePage.clickSettingBtn();
         profilePage.clickSignOutBtn();
     }
+
+    @Test
+    public void loginWithFacebookAccount() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        homePage.openProfilePage();
+        profilePage.clickLoginBtn();
+        loginPage.loginWithFacebook();
+    }
 }
