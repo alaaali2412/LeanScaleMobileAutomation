@@ -21,7 +21,6 @@ public class SearchPage extends PageBase {
     private List<AndroidElement> items;
 
 
-
     public void searchAnItem(String itemName, int item) {
         searchField.sendKeys(itemName);
         driver.pressKey(new KeyEvent(AndroidKey.ENTER));
